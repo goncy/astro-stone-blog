@@ -15,31 +15,81 @@ type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content } = await post.render();
 ---
-<Layout>
-	<div class="flex flex-col items-start gap-8 sm:gap-10">
-		<a href="/blog" class="text-primary-950/70 dark:text-primary-200/70">
-			← Back to blog
-		</a>
-		<div class="flex flex-col items-start gap-4 sm:gap-6">
-			<h1 class="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
-				{post.data.title}
-			</h1>
-			<p class="text-primary-950/70 dark:text-primary-200/70 text-lg sm:text-xl">
-				{post.data.description}
-			</p>
+<Layout title={post.data.title} description={post.data.description}>
+	<section class="flex flex-col gap-6">
+		<div class="flex flex-col items-start gap-6 sm:gap-12">
+			<a href="/blog" class="text-primary-950/70 dark:text-primary-200/70">
+				← Back to blog
+			</a>
+			<div class="flex flex-col items-start gap-3">
+				<h1 class="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
+					{post.data.title}
+				</h1>
+				<p class="text-primary-950/70 dark:text-primary-200/70 text-lg sm:text-xl">
+					{post.data.description}
+				</p>
+			</div>
+			{post.data.heroImage && (
+				<img
+					transition:name={post.data.heroImage}
+					class="h-auto w-full rounded-lg"
+					width="1280"
+					height="640"
+					src={post.data.heroImage}
+					alt="Hero picture"
+				/>
+			)}
+			<article id="post">
+				<Content />
+			</article>
 		</div>
-		{post.data.heroImage && (
-			<img
-				transition:name={post.data.heroImage}
-				class="h-auto w-full rounded-3xl"
-				width="1280"
-				height="640"
-				src={post.data.heroImage}
-				alt="Hero picture"
-			/>
-		)}
-	</div>
-	<article>
-		<Content />
-	</article>
+	</section>
 </Layout>	
+
+<style lang="scss" is:global>
+	#post {
+		h1 {
+			@apply font-medium tracking-tight text-4xl lg:text-6xl sm:text-5xl;
+		}
+
+		h2 {
+			@apply font-medium tracking-tight text-3xl sm:text-4xl;
+		}
+
+		h3 {
+			@apply font-medium text-xl;
+		}
+
+		h4 {
+			@apply font-medium text-lg;
+		}
+
+		p {
+			@apply dark:text-primary-200/70 text-primary-950/70 sm:text-xl text-lg;
+		}
+
+		ul {
+			@apply space-y-3;
+
+			li {
+				@apply flex gap-3;
+			}
+		}
+
+		ol {
+			@apply space-y-3 list-decimal;
+
+			li {
+				@apply flex gap-3;
+			}
+		}
+
+		pre {
+			@apply p-4 rounded-lg;
+		}
+
+		img {
+			@apply rounded-lg;
+		}
+	}
+</style>

@@ -69,14 +69,8 @@ const { title = "Gonzalo Pozzo", description = "Solutions Engineer, content crea
     class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition"
   >
     <Header />
-    <main>
-      <section class="py-16 sm:py-20">
-        <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-          <div class="flex flex-col gap-16">
-            <slot />
-          </div>
-        </div>
-      </section>
+    <main class="p-6 mx-auto max-w-2xl lg:max-w-7xl">
+      <slot />
     </main>
     <Footer />
   </body>

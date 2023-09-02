@@ -17,11 +17,11 @@ const { Content } = await post.render();
 ---
 <Layout title={post.data.title} description={post.data.description}>
 	<section class="flex flex-col gap-6">
-		<div class="flex flex-col items-start gap-6 sm:gap-12">
-			<a href="/blog" class="text-primary-950/70 dark:text-primary-200/70">
+		<div class="flex flex-col items-start gap-6 sm:gap-9">
+			<a href="/blog" class="text-primary-950/50 dark:text-primary-200/50">
 				← Back to blog
 			</a>
-			<div class="flex flex-col items-start gap-3">
+			<div class="flex flex-col items-start gap-1.5">
 				<h1 class="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
 					{post.data.title}
 				</h1>
@@ -48,24 +48,26 @@ const { Content } = await post.render();
 
 <style lang="scss" is:global>
 	#post {
+		@apply space-y-6 dark:text-primary-200/70 text-primary-950/70 sm:text-xl text-lg;
+
+		h1, h2, h3, h4, h5, h6 {
+			@apply font-medium tracking-tight text-lg mt-9 text-primary-950 dark:text-primary-200;
+		}
+
 		h1 {
-			@apply font-medium tracking-tight text-4xl lg:text-6xl sm:text-5xl;
+			@apply text-4xl lg:text-6xl sm:text-5xl;
 		}
 
 		h2 {
-			@apply font-medium tracking-tight text-3xl sm:text-4xl;
+			@apply text-3xl sm:text-4xl;
 		}
 
 		h3 {
-			@apply font-medium text-xl;
+			@apply text-xl;
 		}
 
-		h4 {
-			@apply font-medium text-lg;
-		}
-
-		p {
-			@apply dark:text-primary-200/70 text-primary-950/70 sm:text-xl text-lg;
+		a {
+			@apply underline underline-offset-2 dark:text-primary-200/90 text-primary-950/90 hover:dark:text-primary-200 hover:text-primary-950 transition-colors;
 		}
 
 		ul {
@@ -90,6 +92,10 @@ const { Content } = await post.render();
 
 		img {
 			@apply rounded-lg;
+		}
+
+		hr {
+			@apply border-primary-950/10 dark:border-primary-200/10 border-t-2 my-6;
 		}
 	}
 </style>

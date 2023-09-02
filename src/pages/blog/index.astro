@@ -13,12 +13,16 @@ const posts = (await getCollection('blog')).sort(
 		{posts.map((post) => (
 			<li class="sm:first:col-span-2">
 				<a href={`/blog/${post.slug}/`}>
-					<div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-4 sm:gap-8 rounded-lg p-4 sm:p-8">
+					<div class="flex flex-col gap-3 sm:gap-6">
 						{post.data.heroImage && <img transition:name={post.data.heroImage} class="w-full rounded-lg" width={720} height={360} src={post.data.heroImage} alt={post.data.title} />}
 						<div class="flex flex-col">
-							<h3 class="text-xl font-medium">{post.data.title}</h3>
-							<p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
-								{post.data.description}
+							<h3 class="text-2xl font-bold">{post.data.title}</h3>
+							<p class="text-primary-950/70 dark:text-primary-200/70 text-sm sm:text-base">
+								※ {post.data.pubDate.toLocaleDateString('es-AR', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric',
+								})}
 							</p>
 						</div>
 					</div>

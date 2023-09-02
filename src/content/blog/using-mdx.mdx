@@ -16,11 +16,13 @@ If you have existing content authored in MDX, this integration will hopefully ma
 ## Example
 
 Here is how you import and use a UI component inside of MDX.  
-When you open this page in the browser, you should see the clickable button below.
+When you open this page in the browser, you should see a formatted date below.
 
 import FormattedDate from '../../components/ui/display/FormattedDate.astro';
 
-<FormattedDate date={new Date()} />
+<div class="border border-primary-950/10 dark:border-primary-200/10 rounded-lg p-4 w-fit text-primary-950 dark:text-primary-200">
+  <FormattedDate date={new Date()} />
+</div>
 
 ## More Links
 

@@ -4,30 +4,42 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
 <Layout>
-	<ul class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-		{posts.map((post) => (
-			<li class="sm:first:col-span-2">
-				<a href={`/${post.slug}/`}>
-					<div class="flex flex-col gap-3 sm:gap-6">
-						{post.data.heroImage && <img transition:name={post.data.heroImage} class="w-full rounded-lg" width={720} height={360} src={post.data.heroImage} alt={post.data.title} />}
-						<div class="flex flex-col">
-							<h3 class="text-2xl font-bold">{post.data.title}</h3>
-							<p class="text-primary-950/70 dark:text-primary-200/70 text-sm sm:text-base">
-								※ {post.data.pubDate.toLocaleDateString('es-AR', {
-									year: 'numeric',
-									month: 'long',
-									day: 'numeric',
-								})}
-							</p>
-						</div>
-					</div>
-				</a>
-			</li>
-		))}
-	</ul>
+  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    {
+      posts.map((post) => (
+        <li class="sm:first:col-span-2">
+          <a href={`/${post.slug}/`}>
+            <div class="flex flex-col gap-3 sm:gap-6">
+              {post.data.heroImage && (
+                <img
+                  transition:name={post.data.heroImage}
+                  class="w-full rounded-lg"
+                  width={720}
+                  height={360}
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                />
+              )}
+              <div class="flex flex-col">
+                <h3 class="text-2xl font-bold">{post.data.title}</h3>
+                <p class="text-sm text-primary-950/70 dark:text-primary-200/70 sm:text-base">
+                  ※{' '}
+                  {post.data.pubDate.toLocaleDateString('es-AR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+              </div>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>

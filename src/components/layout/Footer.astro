@@ -74,27 +74,27 @@ const bottomLinks = [
 ---
 
 <footer
-  class="bg-primary-500/10 dark:bg-primary-400/10 py-12 mt-12"
+  class="mt-12 bg-primary-500/10 py-12 dark:bg-primary-400/10"
   aria-labelledby="footer-heading"
 >
   <h2 id="footer-heading" class="sr-only">Footer</h2>
-  <div class="mx-auto max-w-2xl lg:max-w-7xl px-6">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl">
     <div class="flex flex-col justify-between gap-9 lg:flex-row">
       <div class="flex max-w-sm flex-col items-start gap-6">
-        <p class="font-bold text-2xl">goncy</p>
+        <p class="text-2xl font-bold">goncy</p>
         <img
-          class="h-8 w-auto hidden"
+          class="hidden h-8 w-auto"
           width="65"
           height="40"
           src="/assets/logo-inverted.svg"
           :src="$store.theme.isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
           alt="Stone"
         />
-        <p class="text-primary-950/70 dark:text-primary-200/70 text-base">
+        <p class="text-base text-primary-950/70 dark:text-primary-200/70">
           Stone is a premium Astro theme specially designed for Business, Marketing, SaaS and
           Startup websites.
         </p>
-        <p class="text-primary-950/70 dark:text-primary-200/70 text-sm">© 2023 Stone</p>
+        <p class="text-sm text-primary-950/70 dark:text-primary-200/70">© 2023 Stone</p>
       </div>
 
       <!-- Bottom links -->
@@ -108,7 +108,7 @@ const bottomLinks = [
                   <li>
                     <a
                       href={link.href}
-                      class="focus-visible:outline-primary-950 dark:focus-visible:outline-primary-200 inline-flex items-center gap-1 rounded-md text-base hover:underline focus-visible:outline focus-visible:outline-2"
+                      class="inline-flex items-center gap-1 rounded-md text-base hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-950 dark:focus-visible:outline-primary-200"
                       target={link.isExternal ? '_blank' : undefined}
                       rel={link.isExternal ? 'noopener' : undefined}
                     >

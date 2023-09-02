@@ -8,17 +8,21 @@ import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-500.css';
 
 interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title = "Gonzalo Pozzo", description = "Solutions Engineer, content creator, frontend developer, in 🖤 with React.", image = '/blog-placeholder-1.jpg' } = Astro.props;
+const {
+  title = 'Gonzalo Pozzo',
+  description = 'Solutions Engineer, content creator, frontend developer, in 🖤 with React.',
+  image = '/blog-placeholder-1.jpg',
+} = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
@@ -37,7 +41,13 @@ const { title = "Gonzalo Pozzo", description = "Solutions Engineer, content crea
     <meta name="generator" content={Astro.generator} />
 
     <!-- Font preloads -->
-    <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/atkinson-regular.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
     <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
     <!-- Canonical URL -->
@@ -66,10 +76,10 @@ const { title = "Gonzalo Pozzo", description = "Solutions Engineer, content crea
     <ViewTransitions />
   </head>
   <body
-    class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition"
+    class="bg-primary-50 text-primary-950 antialiased transition dark:bg-primary-950 dark:text-primary-200"
   >
     <Header />
-    <main class="px-6 mx-auto max-w-2xl lg:max-w-7xl">
+    <main class="mx-auto max-w-2xl px-6 lg:max-w-7xl">
       <slot />
     </main>
     <Footer />

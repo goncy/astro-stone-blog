@@ -2,8 +2,8 @@ const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	theme: {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
     colors: {
       current: 'currentColor',
       transparent: 'transparent',
@@ -26,5 +26,5 @@ module.exports = {
       '6xl': ['3.75rem', '4.25rem'],
     },
   },
-	plugins: [],
-}
+  plugins: [],
+};

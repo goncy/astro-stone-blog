@@ -1,11 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 
-import Footer from '../components/layout/Footer.astro';
-import Header from '../components/layout/Header.astro';
-
-import '@fontsource/inter/latin-400.css';
-import '@fontsource/inter/latin-500.css';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_HEADER } from '../../constants';
 
 interface Props {
   title?: string;
@@ -16,14 +14,14 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const {
-  title = 'Gonzalo Pozzo',
-  description = 'Solutions Engineer, content creator, frontend developer, in 🖤 with React.',
-  image = '/blog-placeholder-1.jpg',
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image = SITE_HEADER
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="es" x-cloak x-data :class="{ 'dark': $store.theme.isDark }">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -39,16 +37,6 @@ const {
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-
-    <!-- Font preloads -->
-    <link
-      rel="preload"
-      href="/fonts/atkinson-regular.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
@@ -74,6 +62,41 @@ const {
 
     <!-- Transitions -->
     <ViewTransitions />
+
+    <!-- Alpine -->
+    <style is:global>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+    <script>
+      import Alpine from 'alpinejs';
+
+      Alpine.store('theme', {
+        init() {
+          this.isDark = (() => {
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+              return localStorage.getItem('theme') === 'dark';
+            }
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              return true;
+            }
+            return false;
+          })();
+        },
+
+        isDark: false,
+
+        toggle() {
+          this.isDark = !this.isDark;
+
+          localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+        },
+      });
+
+      window.Alpine = Alpine;
+      Alpine.start();
+    </script>
   </head>
   <body
     class="bg-primary-50 text-primary-950 antialiased transition dark:bg-primary-950 dark:text-primary-200"

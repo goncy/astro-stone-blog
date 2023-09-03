@@ -2,6 +2,7 @@ const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     colors: {
@@ -9,9 +10,6 @@ module.exports = {
       transparent: 'transparent',
       white: '#ffffff',
       primary: colors.stone,
-    },
-    fontFamily: {
-      sans: ['Inter', 'sans-serif'],
     },
     fontSize: {
       xs: ['0.75rem', '1rem'],

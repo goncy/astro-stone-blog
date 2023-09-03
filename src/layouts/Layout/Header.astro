@@ -1,8 +1,9 @@
 ---
+import { SITE_DESCRIPTION, SITE_LOGO } from "../../constants";
 const links = [
   {
     ref: '01',
-    name: 'Home',
+    name: 'Blog',
     href: '/',
   },
   {
@@ -12,13 +13,13 @@ const links = [
   },
   {
     ref: '03',
-    name: 'Pricing',
-    href: '/pricing',
+    name: 'Twitter',
+    href: 'https://twitter.com/goncy',
   },
   {
     ref: '04',
-    name: 'Contact',
-    href: '/contact',
+    name: 'YouTube',
+    href: 'https://youtube.com/@goncypozzo',
   },
 ];
 ---
@@ -35,16 +36,8 @@ const links = [
         href="/"
         class="rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200"
       >
-        <span class="sr-only">Goncy</span>
-        <p class="text-2xl font-bold">goncy</p>
-        <img
-          class="hidden h-8 w-auto"
-          width="65"
-          height="40"
-          src="/assets/logo-inverted.svg"
-          :src="$store.theme.isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
-          alt="Stone"
-        />
+        <span class="sr-only">{SITE_LOGO}</span>
+        <p class="text-2xl font-bold">{SITE_LOGO}</p>
       </a>
     </div>
 
@@ -53,7 +46,7 @@ const links = [
       <!-- Toggle theme mode -->
       <button
         type="button"
-        class="inline-flex h-12 w-12 items-center justify-center rounded-full text-primary-950 ring-primary-950 transition hover:bg-primary-500/10 focus:outline-none focus-visible:ring-2 dark:text-primary-200 dark:hover:bg-primary-400/10"
+        class="text-primary-950 dark:text-primary-200 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 ring-primary-950 inline-flex h-14 w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
         x-data
         @click="$store.theme.toggle()"
       >
@@ -72,7 +65,9 @@ const links = [
           ></path>
         </svg>
         <svg
-          class="hidden h-6 w-6"
+          x-cloak
+          class="h-6 w-6"
+          :class="{ 'hidden': $store.theme.isDark }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -83,7 +78,7 @@ const links = [
           ></path>
         </svg>
       </button>
-
+      
       <!-- Toggle menu -->
       <button
         type="button"
@@ -125,22 +120,19 @@ const links = [
 
   <!-- Menu content -->
   <div
-    class="mx-auto hidden max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"
+    class="mx-auto max-w-2xl px-3 sm:px-6 lg:max-w-7xl"
     id="website-menu"
     x-cloak
     x-show="open"
-    x-collapse
-    x-collapse.duration.500ms
   >
-    <div class="grid grid-cols-1 gap-16 pb-24 pt-6 lg:grid-cols-2 lg:pt-12">
+    <div class="grid grid-cols-1 gap-16 pb-12 pt-6 lg:grid-cols-2 lg:pt-6">
       <div
         class="hidden items-center justify-center rounded-lg bg-primary-500/10 px-6 py-8 dark:bg-primary-400/10 lg:flex"
       >
         <p
           class="max-w-sm text-xl italic leading-loose text-primary-950/70 dark:text-primary-200/70"
         >
-          <span class="font-medium">Stone</span> is a premium Astro theme specially designed for
-          Business, Marketing, SaaS and Startup websites.
+          {SITE_DESCRIPTION}
         </p>
       </div>
 

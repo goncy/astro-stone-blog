@@ -1,7 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout/index.astro';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -30,7 +31,7 @@ const { Content } = await post.render();
       </div>
       {
         post.data.heroImage && (
-          <img
+          <Image
             transition:name={post.data.heroImage}
             class="h-auto w-full rounded-lg"
             width="1280"
